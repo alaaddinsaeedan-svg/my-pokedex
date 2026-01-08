@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>My Awesome Pokédex</h1>
+  <div id="pokemon-list">Loading monsters...</div>
+
+  <script>
+    // This is the "Integration" part!
+    // We are "Fetching" your JSON file from GitHub
+    fetch('collection.json')
+      .then(response => response.json()) // Turning text into a JS object
+      .then(data => {
+        let listHtml = "";
+        // We use a loop to look at every monster in your JSON
+        data.favoriteMonsters.forEach(monster => {
+          listHtml += `<p><b>${monster.name}</b> - Type: ${monster.type}</p>`;
+        });
+        document.getElementById('pokemon-list').innerHTML = listHtml;
+      });
+  </script>
+</body>
+</html>
