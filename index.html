@@ -1,19 +1,27 @@
-<script>
-  fetch('collection.json')
-    .then(response => response.json())
-    .then(data => {
-      let listHtml = "";
-      data.favoriteMonsters.forEach(monster => {
-        // This line creates a link to a real Pokémon image using its ID!
-        let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${monster.id}.png`;
-        
-        listHtml += `
-          <div style="display: inline-block; margin: 20px; text-align: center; font-family: sans-serif;">
-            <img src="${imageUrl}" style="width:120px; background-color: #f0f0f0; border-radius: 50%;">
-            <p><strong>${monster.name}</strong></p>
-            <p style="color: gray;">Type: ${monster.type}</p>
-          </div>`;
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>My Awesome Pokédex</h1>
+  <div id="pokemon-list">Loading monsters...</div>
+
+  <script>
+    fetch('collection.json')
+      .then(response => response.json())
+      .then(data => {
+        let listHtml = "";
+        data.favoriteMonsters.forEach(monster => {
+          // This creates the link for the picture
+          let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${monster.id}.png`;
+          
+          listHtml += `
+            <div style="display: inline-block; margin: 10px; text-align: center; border: 1px solid #ccc; padding: 10px; border-radius: 10px;">
+              <img src="${imageUrl}" width="100">
+              <p><b>${monster.name}</b></p>
+              <p>Type: ${monster.type}</p>
+            </div>`;
+        });
+        document.getElementById('pokemon-list').innerHTML = listHtml;
       });
-      document.getElementById('pokemon-list').innerHTML = listHtml;
-    });
-</script>
+  </script>
+</body>
+</html>
