@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html>
-<body>
-  <h1>My Awesome Pokédex</h1>
-  <div id="pokemon-list">Loading monsters...</div>
+<head>
+    <title>My Awesome Pokédex</title>
+</head>
+<body style="background-color: #f4f4f4; text-align: center; font-family: sans-serif;">
 
-  <script>
-    fetch('collection.json')
-      .then(response => response.json())
-      .then(data => {
-        let listHtml = "";
-        data.favoriteMonsters.forEach(monster => {
-          // This creates the link for the picture
-          let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${monster.id}.png`;
-          
-          listHtml += `
-            <div style="display: inline-block; margin: 10px; text-align: center; border: 1px solid #ccc; padding: 10px; border-radius: 10px;">
-              <img src="${imageUrl}" width="100">
-              <p><b>${monster.name}</b></p>
-              <p>Type: ${monster.type}</p>
-            </div>`;
-        });
-        document.getElementById('pokemon-list').innerHTML = listHtml;
-      });
-  </script>
+    <h1>My Awesome Pokédex</h1>
+    
+    <div id="pokemon-list"></div>
+
+    <script>
+        // 1. We ask for your JSON file
+        fetch('collection.json')
+            .then(response => response.json())
+            .then(data => {
+                let listHtml = "";
+                
+                // 2. We loop through your monsters
+                data.favoriteMonsters.forEach(monster => {
+                    // 3. We get the picture from the API
+                    let imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${monster.id}.png`;
+                    
+                    // 4. We build a nice colorful card for each one
+                    listHtml += `
+                        <div style="display: inline-block; background: white; margin: 10px; padding: 20px; border-radius: 15px; shadow: 2px 2px 10px rgba(0,0,0,0.1); width: 150px;">
+                            <img src="${imageUrl}" style="width: 100px;">
+                            <h3 style="text-transform: capitalize;">${monster.name}</h3>
+                            <p style="color: #666;">Type: ${monster.type}</p>
+                        </div>
+                    `;
+                });
+                
+                // 5. We put the finished cards onto the "Stage"
+                document.getElementById('pokemon-list').innerHTML = listHtml;
+            })
+            .catch(error => {
+                document.getElementById('pokemon-list').innerHTML = "Oops! Check your JSON file brackets!";
+                console.error("Error:", error);
+            });
+    </script>
 </body>
 </html>
