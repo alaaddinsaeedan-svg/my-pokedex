@@ -2,6 +2,6 @@
   "trainerName": "SuperCoder9",
   "favoriteMonsters": [
     { "id": 1, "name": "Bulbasaur", "type": "Grass" },
-    { "id": 4, "name": "Charmander", "type": "Fire" }
+    { "id": 25, "name": "Charmander", "type": "Fire" }
   ]
 }
