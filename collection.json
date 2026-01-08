@@ -1,6 +1,11 @@
 {
   "schema_version": "1.0",
   "generated_at": "2026-01-08T00:00:00Z",
-  "description": "Collection file for the my-pokedex project. Add Pokémon objects to the items array.",
-  "items": []
+  "description": "Collection file for the my-pokedex project.",
+  "trainerName": "SuperCoder9",
+  "favoriteMonsters": [
+    { "id": 1, "name": "Bulbasaur", "type": "Grass" },
+    { "id": 2, "name": "Squirtle", "type": "Water" }
+    { "id": 4, "name": "Charmander", "type": "Fire" }
+  ]
 }
